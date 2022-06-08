@@ -94,4 +94,25 @@ public class ProductServiceImpl implements GeneralService<Product> {
         }
         return products;
     }
+
+    @Override
+    public List<Product> findByPrice(int start, int end) {
+        List<Product> products = new ArrayList<>();
+        String query = "select * from product where price between ? and ?;";
+        try (Connection conn = getConnection(); PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, String.valueOf(start));
+            preparedStatement.setString(2, String.valueOf(end));
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nameFind = rs.getString("name");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                products.add(new Product(id, nameFind, price, quantity));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+    }
 }

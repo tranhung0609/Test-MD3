@@ -17,4 +17,6 @@ public interface GeneralService<T> {
     boolean delete(int id) throws SQLException;
 
     List<Product> findByName(String name);
+
+    List<Product> findByPrice(int start, int end);
 }

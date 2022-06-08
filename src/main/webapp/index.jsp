@@ -10,11 +10,18 @@
 <html>
   <head>
     <title>$Title$</title>
+
   </head>
   <body>
   <form method="post">
-    <input type="text" name="name" placeholder="tên cần tìm">
+    <input type="text" name="name" placeholder="Tên cần tìm">
     <input type="hidden" name="action" value="search">
+    <input type="submit" value="tìm kiếm">
+  </form>
+  <form method="post">
+    <input type="number" name="start" placeholder="giá bắt đầu">
+    <input type="number" name="end" placeholder="giá kết thúc">
+    <input type="hidden" name="action" value="search-by-price">
     <input type="submit" value="tìm kiếm">
   </form>
   <h1>Danh sách sản phẩm</h1>
@@ -23,6 +30,5 @@
     <c:if test="${product.price > 200}">Sale 10%</c:if>
     <c:if test="${product.price < 200}">Sale 20%</c:if>
   </c:forEach>
-
   </body>
 </html>
