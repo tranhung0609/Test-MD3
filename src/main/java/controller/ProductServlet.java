@@ -27,7 +27,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view.jsp");
         List<Product> productList = productService.findAll();
         request.setAttribute("products", productList);
         requestDispatcher.forward(request, response);
@@ -53,7 +53,7 @@ public class ProductServlet extends HttpServlet {
 
 
     private void searchByPrice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view.jsp");
         int start = Integer.parseInt(request.getParameter("start"));
         int end = Integer.parseInt(request.getParameter("end"));
         List<Product> products = productService.findByPrice(start, end);
@@ -62,7 +62,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void searchByName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view.jsp");
         String name = request.getParameter("name");
         List<Product> products = productService.findByName(name);
         request.setAttribute("products", products);
